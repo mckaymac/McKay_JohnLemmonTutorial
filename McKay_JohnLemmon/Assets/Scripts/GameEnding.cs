@@ -10,11 +10,13 @@ public class GameEnding : MonoBehaviour
     public float displayDuration = 1f;
     public GameObject player;
     public CanvasGroup exitBackgroundImageCanvasGroup;
+    public AudioSource exitAudio;
     public CanvasGroup caughtBackgroundImageCanvasGroup;
-
+    public AudioSource caughtAudio;
     bool m_IsPlayerAtExit;
     bool m_IsPlayerCaught;
     float m_Timer;
+    bool m_HasAudioPlayed;
 
     //Checks to see if the player reaches the end
     void OnTriggerEnter(Collider other){
@@ -25,19 +27,26 @@ public class GameEnding : MonoBehaviour
 
     public void CaughtPlayer(){
         m_IsPlayerCaught = true;
+        m_HasAudioPlayed = true;
     }
 
     void Update(){
         if(m_IsPlayerAtExit){
-            EndLevel(exitBackgroundImageCanvasGroup, false);
+            EndLevel(exitBackgroundImageCanvasGroup, false, exitAudio);
         }
         else if(m_IsPlayerCaught){
-            EndLevel(caughtBackgroundImageCanvasGroup, true);
+            EndLevel(caughtBackgroundImageCanvasGroup, true, caughtAudio);
         }
     }
 
     //Puts up the end screen for a time when the player reaches the end and quits the program
-    void EndLevel(CanvasGroup imageCanvasGroup, bool doRestart){
+    void EndLevel(CanvasGroup imageCanvasGroup, bool doRestart, AudioSource audioSource){
+
+        if(!m_HasAudioPlayed){
+            audioSource.Play();
+            m_HasAudioPlayed = true;
+        }
+        
         m_Timer += Time.deltaTime;
 
         exitBackgroundImageCanvasGroup.alpha = m_Timer / fadeDuration;
