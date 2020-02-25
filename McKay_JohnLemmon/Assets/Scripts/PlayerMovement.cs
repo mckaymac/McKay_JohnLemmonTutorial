@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-
+    public float turnSpeed = 20f;
     Animator m_Animator;
     Rigidbody m_Rigidbody;
     Vector3 m_Movement;
     Quaternion m_Rotation = Quaternion.identity;
-    public float turnSpeed = 20f;
+    
 
     // Start is called before the first frame update
     void Start()
@@ -34,7 +34,7 @@ public class PlayerMovement : MonoBehaviour
 
         //Starts the walking animation if logic is right
         bool isWalking = hasHorizontalInput || hasVerticalInput;
-        m_Animator.SetBool("IsWalking", isWalking);
+        m_Animator.SetBool("isWalking", isWalking);
 
         Vector3 desiredForward = Vector3.RotateTowards(transform.forward, m_Movement, turnSpeed * Time.deltaTime, 0f);
         m_Rotation = Quaternion.LookRotation(desiredForward);
