@@ -1144,7 +1144,7 @@ GameObject:
   - component: {fileID: 973376749}
   - component: {fileID: 973376748}
   m_Layer: 5
-  m_Name: ExitImage
+  m_Name: CaughtImage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1280,7 +1280,7 @@ GameObject:
   - component: {fileID: 1181624831}
   m_Layer: 0
   m_Name: GameEnding
-  m_TagString: Untagged
+  m_TagString: Ending
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5826,6 +5826,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7960708598740977544, guid: f077050da5263e7449245ce624a3d90e,
+        type: 3}
+      propertyPath: turnSpeed
+      value: 20
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f077050da5263e7449245ce624a3d90e, type: 3}
