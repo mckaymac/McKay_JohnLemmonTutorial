@@ -39,6 +39,7 @@ public class PlayerMovement : MonoBehaviour
         bool isWalking = hasHorizontalInput || hasVerticalInput;
         m_Animator.SetBool("isWalking", isWalking);
 
+        //Plays footsteps
         if(isWalking){
             if(!m_AudioSource.isPlaying){
                 m_AudioSource.Play();

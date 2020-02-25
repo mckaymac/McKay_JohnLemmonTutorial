@@ -17,6 +17,7 @@ public class WaypointPatrol : MonoBehaviour
     }
 
     // Update is called once per frame
+    //Sets up AI for ghosts to follow
     void Update()
     {
         if(navMeshAgent.remainingDistance < navMeshAgent.stoppingDistance){

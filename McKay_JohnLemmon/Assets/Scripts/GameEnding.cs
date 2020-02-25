@@ -25,11 +25,13 @@ public class GameEnding : MonoBehaviour
         }
     }
 
+    //Logic gate for getting caught
     public void CaughtPlayer(){
         m_IsPlayerCaught = true;
         m_HasAudioPlayed = true;
     }
 
+    //Checks to see if the player is caught or exits and does appropriate action
     void Update(){
         if(m_IsPlayerAtExit){
             EndLevel(exitBackgroundImageCanvasGroup, false, exitAudio);
@@ -39,14 +41,14 @@ public class GameEnding : MonoBehaviour
         }
     }
 
-    //Puts up the end screen for a time when the player reaches the end and quits the program
+    //Puts up the end screen for a time when the player reaches the end and quits the program or restarts if caught
     void EndLevel(CanvasGroup imageCanvasGroup, bool doRestart, AudioSource audioSource){
 
         if(!m_HasAudioPlayed){
             audioSource.Play();
             m_HasAudioPlayed = true;
         }
-        
+
         m_Timer += Time.deltaTime;
 
         exitBackgroundImageCanvasGroup.alpha = m_Timer / fadeDuration;

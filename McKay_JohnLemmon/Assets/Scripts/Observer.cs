@@ -8,6 +8,7 @@ public class Observer : MonoBehaviour
     public GameEnding gameEnding;
     bool m_IsPlayerInRange;
 
+    //Checks to see if player is run into
     void OnTriggerEnter(Collider other){
         if(other.transform == player){
             if(other.transform == player){
@@ -21,7 +22,7 @@ public class Observer : MonoBehaviour
             m_IsPlayerInRange = false;
           }
     }
-
+    //Checks to see if player is in line of sight
     void Update(){
         if(m_IsPlayerInRange){
             Vector3 direction = player.position - transform.position + Vector3.up;
