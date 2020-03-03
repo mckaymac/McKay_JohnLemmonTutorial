@@ -53,7 +53,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\Scripts\EnemyHealth.cs" />
      <Compile Include="Assets\Scripts\GameEnding.cs" />
+     <Compile Include="Assets\Scripts\LaserEyes.cs" />
      <Compile Include="Assets\Scripts\LightFlicker.cs" />
      <Compile Include="Assets\Scripts\Observer.cs" />
      <Compile Include="Assets\Scripts\Outliner.cs" />

@@ -7,6 +7,7 @@ public class Observer : MonoBehaviour
     public Transform player;
     public GameEnding gameEnding;
     bool m_IsPlayerInRange;
+    private int HP;
 
     //Checks to see if player is run into
     void OnTriggerEnter(Collider other){

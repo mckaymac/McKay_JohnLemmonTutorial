@@ -11,6 +11,9 @@ public class PlayerMovement : MonoBehaviour
     Vector3 m_Movement;
     Quaternion m_Rotation = Quaternion.identity;
 
+    public GameObject projectilePrefab;
+    public Transform shotSpawn;
+    public float shotSpeed = 10f;
     
 
     // Start is called before the first frame update
@@ -38,6 +41,14 @@ public class PlayerMovement : MonoBehaviour
         //Starts the walking animation if logic is right
         bool isWalking = hasHorizontalInput || hasVerticalInput;
         m_Animator.SetBool("isWalking", isWalking);
+
+        //Shoot the laser from the player's face
+        if(Input.GetKeyDown(KeyCode.Space)){
+            GameObject projectile = Instantiate(projectilePrefab, shotSpawn.transform.position, projectilePrefab.transform.rotation);
+            Rigidbody projectileRB = projectile.GetComponent<Rigidbody>();
+            projectileRB.velocity = transform.forward * shotSpeed;
+        }
+
 
         //Plays footsteps
         if(isWalking){
