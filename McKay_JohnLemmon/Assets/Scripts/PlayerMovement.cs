@@ -14,6 +14,9 @@ public class PlayerMovement : MonoBehaviour
     public GameObject projectilePrefab;
     public Transform shotSpawn;
     public float shotSpeed = 10f;
+
+    public bool shrineEffect = false;
+    float shrineCooldown;
     
 
     // Start is called before the first frame update
@@ -22,6 +25,15 @@ public class PlayerMovement : MonoBehaviour
         m_Animator = GetComponent<Animator>();
         m_Rigidbody = GetComponent<Rigidbody>();
         m_AudioSource = GetComponent<AudioSource>();
+    }
+
+    private void OnTriggerEnter(Collider other){
+        if(!shrineEffect && shrineCooldown <= 0f){
+            if(other.CompareTag("Shrine")){
+                shrineEffect = true;
+                shrineCooldown = 15f;
+            }
+        }
     }
 
     // Update is called once per frame
@@ -49,6 +61,13 @@ public class PlayerMovement : MonoBehaviour
             projectileRB.velocity = transform.forward * shotSpeed;
         }
 
+        if(shrineEffect){
+            shrineCooldown -= Time.deltaTime;
+            print("ShrineCooldown: " + shrineCooldown);
+            if(shrineCooldown <= 0f){
+                shrineEffect = false;
+            }
+        }
 
         //Plays footsteps
         if(isWalking){
