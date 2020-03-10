@@ -8,6 +8,8 @@ TagManager:
   - Projectile
   - Shrine
   - Enemy
+  - Tutorial
+  - EndTut
   layers:
   - Default
   - TransparentFX
