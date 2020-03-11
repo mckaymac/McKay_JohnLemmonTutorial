@@ -13,15 +13,16 @@ public class PlayerMovement : MonoBehaviour
     AudioSource m_AudioSource;
     Vector3 m_Movement;
     Quaternion m_Rotation = Quaternion.identity;
-    //ColorGrading colorGradingLayer;
+    ColorGrading colorGradingLayer;
 
     public GameObject projectilePrefab;
     public Transform shotSpawn;
     public float shotSpeed = 10f;
-    public PostProcessVolume volume;
     public bool shrineEffect = false;
     float shrineCooldown;
     public Text tutorialText;
+    public Text tutorialTextTwo;
+    public Text ShrineText;
     
 
     // Start is called before the first frame update
@@ -30,9 +31,8 @@ public class PlayerMovement : MonoBehaviour
         m_Animator = GetComponent<Animator>();
         m_Rigidbody = GetComponent<Rigidbody>();
         m_AudioSource = GetComponent<AudioSource>();
-       // volume = GetComponent<PostProcessVolume>();
-       // volume.profile.TryGetSettings(out colorGradingLayer);
     }
+
 
     private void OnTriggerEnter(Collider other){
         if(!shrineEffect && shrineCooldown <= 0f){
@@ -46,12 +46,14 @@ public class PlayerMovement : MonoBehaviour
         //If the player is in the spawn area then text appears showing the controls
         if(other.gameObject.CompareTag("Tutorial")){
             tutorialText.text = "WASD or arrow keys to move, SPACE to shoot laser eyes";
+            tutorialTextTwo.text = "Pray at the shrines to be able to banish the red ghosts";
 
         }
 
         //When the player leaves the spawn spot then the tutorial text disapears
         if(other.gameObject.CompareTag("EndTut")){
             tutorialText.text = "";
+            tutorialTextTwo.text = "";
         }
     }
 
@@ -80,12 +82,14 @@ public class PlayerMovement : MonoBehaviour
             projectileRB.velocity = transform.forward * shotSpeed;
         }
 
+        ShrineText.text = "Shrine Time Left: " + shrineCooldown;
+
+        //Allow player to kill red ghosts
         if(shrineEffect){
             shrineCooldown -= Time.deltaTime;
             print("ShrineCooldown: " + shrineCooldown);
             if(shrineCooldown <= 0f){
                 shrineEffect = false;
-                //colorGradingLayer.hueShift.value = 0;
             }
         }
 
